@@ -20,7 +20,7 @@ body {
 
 /* App container */
 .App {
-  text-align: center;
+  text-align: 'left';
   position: relative;
   z-index: 1;
   animation: fadeIn 2s ease-out;

@@ -1,0 +1,32 @@
+/* src/components/InstagramFeed.css */
+
+.instagram-feed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .instagram-feed .post {
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .instagram-feed .post img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .instagram-feed .post p {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+    text-align: left;
+  }
+  

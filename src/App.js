@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './App.css';  // Your CSS file
+import './App.css';  // Your global CSS file
+import InstagramFeed from './components/InstagramFeed/InstagramFeed';  // Import InstagramFeed component
 
 function App() {
   const [image, setImage] = useState(null);  // Store the image as a base64 string
@@ -59,7 +60,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Image Upload to Cloudinary</h1>
+      <h1>Image Upload</h1>
 
       {/* Image upload input */}
       <input
@@ -91,6 +92,8 @@ function App() {
           </a>
         </div>
       )}
+
+    
     </div>
   );
 }
