@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/jigpx/react/issues"
   },
-  "homepage": "https://<username>.github.io/react",
+  "homepage": "https://jigpx.github.io/react",
   "description": "",
   "devDependencies": {
     "gh-pages": "^6.3.0"
