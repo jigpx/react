@@ -1,0 +1,13 @@
+# Ignore build and output directories
+.next/
+out/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore .env files
+.env
