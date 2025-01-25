@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^1.7.9",
     "express": "^4.21.2",
-    "gh-pages": "^6.3.0",
     "multer": "^1.4.5-lts.1",
     "next": "^15.1.6",
     "react": "^19.0.0",
@@ -18,7 +17,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "deploy": "npm run build && npm run export && gh-pages -d out"
+    "predeploy": "npm run build && npm run export",
+    "deploy": "npm run predeploy && gh-pages -d out"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,9 @@
   "bugs": {
     "url": "https://github.com/jigpx/react/issues"
   },
-  "homepage": "https://github.com/jigpx/react#readme",
-  "description": ""
+  "homepage": "https://<username>.github.io/react",
+  "description": "",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
 }
