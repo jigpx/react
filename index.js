@@ -5,13 +5,21 @@ export default function Home() {
   const [fileUrl, setFileUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Handle file selection
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
+    const selectedFile = event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+      setErrorMessage(''); // Clear error message when a file is selected
+    } else {
+      setErrorMessage('No file selected.');
+    }
   };
 
+  // Handle file upload
   const handleUpload = async () => {
     if (!file) {
-      alert('Please select a file first');
+      setErrorMessage('Please select a file first');
       return;
     }
 
@@ -24,15 +32,15 @@ export default function Home() {
         body: formData,
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setFileUrl(data.fileUrl); // Display uploaded file URL
-        alert('File uploaded successfully!');
-      } else {
+      if (!response.ok) {
         const errorData = await response.json();
-        setErrorMessage(errorData.message); // Show the error from the server
-        alert('File upload failed');
+        setErrorMessage(errorData.message || 'File upload failed');
+        return;
       }
+
+      const data = await response.json();
+      setFileUrl(data.fileUrl); // Display uploaded file URL
+      alert('File uploaded successfully!');
     } catch (error) {
       console.error('Error uploading file:', error);
       setErrorMessage('Error uploading file');
@@ -43,11 +51,17 @@ export default function Home() {
   return (
     <div>
       <h1>Upload Your Image or Video</h1>
+
+      {/* File input */}
       <input type="file" onChange={handleFileChange} />
+      
+      {/* Upload button */}
       <button onClick={handleUpload}>Upload File</button>
 
+      {/* Error message */}
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
 
+      {/* Display uploaded file */}
       {fileUrl && (
         <div>
           <h2>Uploaded File:</h2>
