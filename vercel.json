@@ -1,6 +1,12 @@
 {
     "git": {
       "branch": "gh-pages"
-    }
+    },
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/next"
+      }
+    ]
   }
   
