@@ -1,9 +1,11 @@
 {
-  "homepage": "https://jigpx.github.io/react",
-  "name": "my-next-app",
-  "version": "0.1.0",
-  "private": true,
+  "name": "react",
+  "version": "1.0.0",
+  "main": "index.js",
   "dependencies": {
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "gh-pages": "^6.3.0",
     "multer": "^1.4.5-lts.1",
     "next": "^15.1.6",
     "react": "^19.0.0",
@@ -16,27 +18,18 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "npm run build && npm run export && gh-pages -d out"
   },
-  "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jigpx/react.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jigpx/react/issues"
   },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
-  }
+  "homepage": "https://github.com/jigpx/react#readme",
+  "description": ""
 }
