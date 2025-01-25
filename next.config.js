@@ -1,7 +1,17 @@
 // next.config.js
 
 module.exports = {
-    output: 'export',  // Enable static export
-    // Other configurations can go here, such as custom redirects or rewrites.
-  };
-  
+
+  // Example: Customize Webpack configuration
+  webpack(config, { isServer }) {
+    if (!isServer) {
+      config.resolve.fallback = { fs: false };  // Fix some node package issues for browser
+    }
+    return config;
+  },
+
+  // Example: Set up environment variables
+  env: {
+    API_URL: 'https://api.example.com',
+  },
+};

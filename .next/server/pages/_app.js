@@ -1,1 +1,46 @@
-(()=>{var r={};r.id=636,r.ids=[636],r.modules={2327:(r,e,t)=>{"use strict";t.r(e),t.d(e,{default:()=>a});var s=t(8732);t(2880);var i=t(2015),u=t.n(i);let a=function({Component:r,pageProps:e}){return(0,s.jsx)(u().StrictMode,{children:(0,s.jsx)(r,{...e})})}},2880:()=>{},2015:r=>{"use strict";r.exports=require("react")},8732:r=>{"use strict";r.exports=require("react/jsx-runtime")}};var e=require("../webpack-runtime.js");e.C(r);var t=e(e.s=2327);module.exports=t})();
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+(() => {
+var exports = {};
+exports.id = "pages/_app";
+exports.ids = ["pages/_app"];
+exports.modules = {
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ "react/jsx-runtime":
+/*!************************************!*\
+  !*** external "react/jsx-runtime" ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = require("react/jsx-runtime");
+
+/***/ })
+
+};
+;
+
+// load runtime
+var __webpack_require__ = require("../webpack-runtime.js");
+__webpack_require__.C(exports);
+var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc"], () => (__webpack_exec__("./node_modules/next/dist/pages/_app.js")));
+module.exports = __webpack_exports__;
+
+})();
