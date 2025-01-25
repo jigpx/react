@@ -11,6 +11,12 @@
 # production
 /build
 
+# next.js build folder
+.next/
+
+# production output folder
+/out/
+
 # misc
 .DS_Store
 .env.local
