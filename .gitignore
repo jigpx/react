@@ -11,3 +11,5 @@ logs/
 
 # Ignore .env files
 .env
+
+client_secret_*.json
