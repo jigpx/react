@@ -1,0 +1,18 @@
+/* styles/globals.css */
+
+/* Apply the 'Barlow Condensed' font globally */
+body {
+  font-family: 'Barlow Condensed', sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  margin: 0;
+}
+
+/* Add some default styling to remove padding and margin for all elements */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}

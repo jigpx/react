@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [file, setFile] = useState(null);
@@ -41,23 +42,27 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <h1>Upload Your Image or Video</h1>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload File</button>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Upload Your Image or Video</h1>
+      <input 
+        type="file" 
+        onChange={handleFileChange} 
+        className={styles.input} 
+      />
+      <button onClick={handleUpload} className={styles.button}>Upload File</button>
 
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+      {errorMessage && <div className={styles.error}>{errorMessage}</div>}
 
       {fileUrl && (
-        <div>
+        <div className={styles.filePreview}>
           <h2>Uploaded File:</h2>
           {fileUrl.endsWith('.mp4') || fileUrl.endsWith('.mov') || fileUrl.endsWith('.avi') ? (
-            <video controls width="300">
+            <video controls width="300" className={styles.preview}>
               <source src={fileUrl} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           ) : (
-            <img src={fileUrl} alt="Uploaded" width="300" />
+            <img src={fileUrl} alt="Uploaded" width="300" className={styles.preview} />
           )}
         </div>
       )}
