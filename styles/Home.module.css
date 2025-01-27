@@ -1,16 +1,20 @@
 /* Home.module.css */
+
+/* Container for the main content */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #5f5b8e, #a2a3ca);
+  background: linear-gradient(135deg, #5f5b8e, #a2a3ca); /* Gradient background */
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure elements inside the container are positioned correctly */
 }
 
+/* Title styling */
 .title {
   font-weight: 600;
   font-size: 2rem;
@@ -19,6 +23,7 @@
   text-align: center;
 }
 
+/* Input fields styling */
 .input {
   font-size: 1rem;
   padding: 10px;
@@ -31,6 +36,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Button styling */
 .button {
   font-size: 1rem;
   padding: 12px 25px;
@@ -43,23 +49,50 @@
   transition: background-color 0.3s ease;
 }
 
+/* Hover effect for button */
 .button:hover {
   background-color: #0056b3;
 }
 
+/* Error message styling */
 .error {
   color: red;
   font-size: 1rem;
   margin-top: 10px;
 }
 
+/* File preview section */
 .filePreview {
   text-align: center;
   margin-top: 20px;
 }
 
+/* Image preview styling */
 .preview {
   border-radius: 8px;
   margin-top: 15px;
 }
 
+/* Google Sign-In button styling */
+.google-sign-in-button {
+  font-size: 1rem;
+  padding: 12px 25px;
+  border-radius: 8px;
+  background-color: #4285f4; /* Google Blue */
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px; /* Ensure it’s spaced nicely */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for Google Sign-In button */
+.google-sign-in-button:hover {
+  background-color: #357ae8; /* Slightly darker blue */
+}
+
+/* Disabled button state */
+.google-sign-in-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

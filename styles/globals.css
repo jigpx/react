@@ -6,13 +6,46 @@ body {
   background-color: #f4f7fc;
   color: #333;
   margin: 0;
+  height: 100%; /* Ensure full height for the body */
 }
 
 /* Add some default styling to remove padding and margin for all elements */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* Ensure html and body take full height of the viewport */
 html, body {
   height: 100%;
 }
+
+/* Adjust the layout so the Google Sign-In button is not obstructed */
+.purple-background {
+  background-color: purple; /* Retain purple background if needed */
+  height: 100vh; /* Full screen height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Allow absolute positioning of button */
+}
+
+/* Ensure the Google Sign-In button is on top */
+.google-sign-in-button {
+  position: relative;  /* Makes sure the button stays in place */
+  z-index: 10;         /* Brings the button above other elements */
+  padding: 10px 20px;
+  background-color: #4285f4; /* Google blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.google-sign-in-button:disabled {
+  background-color: #ccc; /* Disable button style */
+  cursor: not-allowed;
+}
+
