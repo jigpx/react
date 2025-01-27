@@ -10,5 +10,12 @@
     "files": [
       "static/chunks/709.a29d67dc4a53b493.js"
     ]
+  },
+  "pages\\index.js -> react-lottie": {
+    "id": 3049,
+    "files": [
+      "static/chunks/ea88be26.8f90c4c0c5539a2e.js",
+      "static/chunks/49.2acc29a1d6241e57.js"
+    ]
   }
 }

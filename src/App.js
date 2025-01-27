@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';  // Your global CSS file
 import InstagramFeed from './components/InstagramFeed/InstagramFeed';  // Import InstagramFeed component
+import Image from 'next/image';
 
 function App() {
   const [image, setImage] = useState(null);  // Store the image as a base64 string
@@ -74,7 +75,7 @@ function App() {
       {image && (
         <div className="image-preview-container">
           <h3>Preview of uploaded image:</h3>
-          <img src={image} alt="Uploaded Preview" className="image-preview" />
+          <Image src={image} alt="Uploaded Preview" width={500} height={500} className="image-preview" />
         </div>
       )}
 

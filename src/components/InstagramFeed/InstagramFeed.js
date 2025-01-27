@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './InstagramFeed.css';  // Import the InstagramFeed styles
+import styles from './InstagramFeed.module.css'; // Import CSS Module
+import Image from 'next/image';
 
 const InstagramFeed = () => {
   const [posts, setPosts] = useState([]);
-  const accessToken = 'YOUR_ACCESS_TOKEN'; // Replace with your actual access token (better handled in .env file)
+  const accessToken = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN; // Use environment variable
 
   useEffect(() => {
     const fetchInstagramPosts = async () => {
       try {
-        const response = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_url&access_token=${accessToken}`);
+        const response = await fetch(`https://graph.instagram.com/me/media?fields=id,caption,media_url,media_type&access_token=${accessToken}`);
         const data = await response.json();
         if (data.data) {
           setPosts(data.data);
@@ -19,15 +20,30 @@ const InstagramFeed = () => {
     };
 
     fetchInstagramPosts();
-  }, []);
+  }, [accessToken]);
+
+  const truncateCaption = (caption) => {
+    if (!caption) return ''; // Return an empty string if caption is undefined
+    if (caption.length > 100) {
+      return caption.substring(0, 100) + '...';
+    }
+    return caption;
+  };
 
   return (
-    <div className="instagram-feed">
+    <div className={styles.instagramFeed}>
       {posts.length > 0 ? (
         posts.map((post) => (
-          <div key={post.id} className="post">
-            <img src={post.media_url} alt={post.caption} className="post-image" />
-            <p className="post-caption">{post.caption}</p>
+          <div key={post.id} className={styles.post}>
+            {post.media_type === 'IMAGE' ? (
+              <Image src={post.media_url} alt={post.caption || 'Instagram post'} className={styles.postImage} width={500} height={500} />
+            ) : post.media_type === 'VIDEO' ? (
+              <video controls className={styles.postVideo}>
+                <source src={post.media_url} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : null}
+            <p className={styles.postCaption}>{truncateCaption(post.caption)}</p>
           </div>
         ))
       ) : (

@@ -1,0 +1,36 @@
+/* src/components/InstagramFeed.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap');
+
+.instagramFeed {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.post {
+  background-color: #fff;
+  border: 0px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(33.333% - 32px); /* Adjust the width of each post */
+  max-width: calc(33.333% - 32px); /* Ensure the posts don't exceed the container width */
+  text-align: center;
+}
+
+.postImage,
+.postVideo {
+  width: 100%;
+  height: auto;
+}
+
+.postCaption {
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 600; /* Semi Bold */
+  text-indent: 20px; /* Left indent */
+}

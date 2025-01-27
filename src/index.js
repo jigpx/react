@@ -1,6 +1,7 @@
 // pages/index.js
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function Home() {
   const [file, setFile] = useState(null);
@@ -56,7 +57,7 @@ export default function Home() {
               Your browser does not support the video tag.
             </video>
           ) : (
-            <img src={fileUrl} alt="Uploaded" width="300" />
+            <Image src={fileUrl} alt="Uploaded" width={300} height={300} />
           )}
         </div>
       )}

@@ -1,0 +1,63 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  text-align: center; /* Center align text */
+}
+
+.headerAnimation {
+  width: 100%; /* Make the animation take up the full width */
+  max-width: 100%; /* Ensure it doesn't exceed the container width */
+  height: auto;
+  margin: 0 auto 24px; /* Center the animation and add bottom margin */
+}
+
+.header {
+  font-size: 48px; /* Large font size */
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.uploadSection,
+.googleSignInSection,
+.instagramFeedSection {
+  margin-bottom: 24px; /* Add margin between sections */
+}
+
+.uploadSection input,
+.uploadSection button,
+.googleSignInSection button {
+  margin: 8px 0;
+}
+
+.googleSignInSection {
+  max-width: 300px; /* Set maximum width for the Google Sign-In button */
+  margin: 0 auto; /* Center the button within its container */
+}
+
+.instagramFeed {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.post {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.postImage,
+.postVideo {
+  width: 100%;
+  height: auto;
+}
+
+.postCaption {
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+}

@@ -1,7 +1,13 @@
-// pages/index.js
-
 import { useState } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import Image from 'next/image';
+import InstagramFeed from '../src/components/InstagramFeed/InstagramFeed';
+import dynamic from 'next/dynamic';
+import styles from './index.module.css'; // Import CSS Module
+
+// Dynamically import the Lottie component
+const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
+import animationData from '../public/animations/header.json'; // Import the Lottie animation JSON
 
 export default function Home() {
   const [file, setFile] = useState(null);
@@ -70,17 +76,33 @@ export default function Home() {
     console.error('Login Failed:', response);
   };
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
   return (
     <GoogleOAuthProvider clientId="296455840054-cvkq3gv3201h5io3lopmp7k2ftar8ob4.apps.googleusercontent.com">
-      <div>
-        <h1>Upload Your Image or Video</h1>
-        <input type="file" onChange={handleFileChange} />
-        <button onClick={handleUpload}>Upload File</button>
-        <GoogleLogin
-          onSuccess={handleLoginSuccess}
-          onError={handleLoginFailure}
-          redirectUri="http://localhost:3000" // Ensure this matches the redirect URI in Google Developer Console
-        />
+      <div className={styles.container}>
+        <div className={styles.headerAnimation}>
+          <Lottie options={defaultOptions} width="100%" height="auto" />
+        </div>
+        <h1 className={styles.header}>Work in progress.</h1>
+        <div className={styles.uploadSection}>
+          <h1>Upload Your Image or Video</h1>
+          <input type="file" onChange={handleFileChange} />
+          <button onClick={handleUpload}>Upload File</button>
+        </div>
+        <div className={styles.googleSignInSection}>
+          <GoogleLogin
+            onSuccess={handleLoginSuccess}
+            onError={handleLoginFailure}
+          />
+        </div>
         {fileUrl && (
           <div>
             <h2>Uploaded File:</h2>
@@ -90,10 +112,13 @@ export default function Home() {
                 Your browser does not support the video tag.
               </video>
             ) : (
-              <img src={fileUrl} alt="Uploaded file" width="300" />
+              <Image src={fileUrl} alt="Uploaded file" width={300} height={300} />
             )}
           </div>
         )}
+        <div className={styles.instagramFeedSection}>
+          <InstagramFeed />
+        </div>
       </div>
     </GoogleOAuthProvider>
   );
