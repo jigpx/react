@@ -31,3 +31,73 @@
 </body>
 
 </html>
+
+// filepath: /t:/AI/github/react/pages/index.js
+import { useState } from 'react';
+import { GoogleLogin } from 'react-google-login';
+
+export default function Home() {
+  const [file, setFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState('');
+
+  // Handle file selection
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  // Handle form submission (upload file)
+  const handleUpload = async () => {
+    if (!file) {
+      alert('Please select a file first');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      // Send the file to the backend API
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setFileUrl(data.fileUrl); // Update the URL for the uploaded file
+        alert('File uploaded successfully!');
+      } else {
+        alert('File upload failed');
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Error uploading file');
+    }
+  };
+
+  // Handle Google Sign-In success
+  const handleLoginSuccess = (response) => {
+    console.log('Login Success:', response);
+    // You can use the response to get user information and tokens
+  };
+
+  // Handle Google Sign-In failure
+  const handleLoginFailure = (response) => {
+    console.error('Login Failed:', response);
+  };
+
+  return (
+    <div>
+      <h1>Upload Image or Video</h1>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload}>Upload File</button>
+      <GoogleLogin
+        clientId="YOUR_GOOGLE_CLIENT_ID"
+        buttonText="Login with Google"
+        onSuccess={handleLoginSuccess}
+        onFailure={handleLoginFailure}
+        cookiePolicy={'single_host_origin'}
+      />
+    </div>
+  );
+}
