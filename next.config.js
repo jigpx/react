@@ -2,5 +2,48 @@
 module.exports = {
   output: 'export',
   reactStrictMode: true,
+  basePath: '/react',
+  assetPrefix: '/react/',
   // Other Next.js settings can go here
 };
+
+// filepath: /t:/AI/github/react/package.json
+{
+  "name": "react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "gapi-script": "^1.2.0",
+    "multer": "^1.4.5-lts.1",
+    "next": "^15.1.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "predeploy": "npm run build && npm run export",
+    "deploy": "npm run predeploy && gh-pages -d out"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jigpx/react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jigpx/react/issues"
+  },
+  "homepage": "https://jigpx.github.io/react",
+  "description": "A React project for uploading and displaying media files",
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
