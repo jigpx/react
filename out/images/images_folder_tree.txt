@@ -1,0 +1,11 @@
+[Folder] T:/AI/github/react/public/images
+    direct.me.svg
+    gmail.svg
+    images_folder_tree.txt
+    instagram.svg
+    patreon.svg
+    reddit.svg
+    threads.svg
+    tiktok.svg
+    x.svg
+    youtube.svg

@@ -1,13 +1,7 @@
 import { useState } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import Image from 'next/image';
-import InstagramFeed from '../src/components/InstagramFeed/InstagramFeed';
-import dynamic from 'next/dynamic';
 import styles from './index.module.css'; // Import CSS Module
-
-// Dynamically import the Lottie component
-const Lottie = dynamic(() => import('react-lottie'), { ssr: false });
-import animationData from '../public/animations/header.json'; // Import the Lottie animation JSON
 
 export default function Home() {
   const [file, setFile] = useState(null);
@@ -29,8 +23,8 @@ export default function Home() {
     formData.append('file', file);
 
     try {
-      // Send the file to the backend API
-      const response = await fetch('/api/upload', {
+      // Send the file to an external API
+      const response = await fetch('https://your-external-api.com/upload', {
         method: 'POST',
         body: formData,
       });
@@ -51,7 +45,7 @@ export default function Home() {
   // Handle Google Sign-In success
   const handleLoginSuccess = async (response) => {
     try {
-      const res = await fetch('/api/auth/google', {
+      const res = await fetch('https://your-external-api.com/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,48 +70,53 @@ export default function Home() {
     console.error('Login Failed:', response);
   };
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-  };
-
   return (
     <GoogleOAuthProvider clientId="296455840054-cvkq3gv3201h5io3lopmp7k2ftar8ob4.apps.googleusercontent.com">
+      <div className={styles.topBar}>
+        <h1>Jigar Patel</h1>
+        <div className={styles.topBarContent}>
+          <ul>
+            <li><a href="https://www.instagram.com/jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/instagram.svg" alt="Instagram" width={24} height={24} /></a></li>
+            <li><a href="https://www.tiktok.com/@jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/tiktok.svg" alt="TikTok" width={24} height={24} /></a></li>
+            <li><a href="https://www.youtube.com/@jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/youtube.svg" alt="YouTube" width={24} height={24} /></a></li>
+            <li><a href="https://x.com/jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/x.svg" alt="X" width={24} height={24} /></a></li>
+            <li><a href="https://www.threads.net/@jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/threads.svg" alt="Threads" width={24} height={24} /></a></li>
+            <li><a href="https://www.patreon.com/@jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/patreon.svg" alt="Patreon" width={24} height={24} /></a></li>
+            <li><a href="https://www.reddit.com/user/jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/reddit.svg" alt="Reddit" width={24} height={24} /></a></li>
+            <li><a href="https://direct.me/jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/direct.me.svg" alt="Direct.me" width={24} height={24} /></a></li>
+            <li><a href="mailto:anditsjig@gmail.com"><Image src="/images/gmail.svg" alt="Email" width={24} height={24} /></a></li>
+          </ul>
+        </div>
+      </div>
       <div className={styles.container}>
-        <div className={styles.headerAnimation}>
-          <Lottie options={defaultOptions} width="100%" height="auto" />
-        </div>
-        <h1 className={styles.header}>Work in progress.</h1>
-        <div className={styles.uploadSection}>
-          <h1>Upload Your Image or Video</h1>
-          <input type="file" onChange={handleFileChange} />
-          <button onClick={handleUpload}>Upload File</button>
-        </div>
-        <div className={styles.googleSignInSection}>
-          <GoogleLogin
-            onSuccess={handleLoginSuccess}
-            onError={handleLoginFailure}
-          />
-        </div>
-        {fileUrl && (
-          <div>
-            <h2>Uploaded File:</h2>
-            {fileUrl.endsWith('.mp4') || fileUrl.endsWith('.mov') || fileUrl.endsWith('.avi') ? (
-              <video controls width="300">
-                <source src={fileUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <Image src={fileUrl} alt="Uploaded file" width={300} height={300} />
-            )}
+        <div>
+          <div className={styles.uploadSection}>
+            <h1 className={styles.header}>Upload Your Image or Video</h1>
+            <input type="file" onChange={handleFileChange} />
+            <button onClick={handleUpload}>Upload File</button>
           </div>
-        )}
-        <div className={styles.instagramFeedSection}>
-          <InstagramFeed />
+          <div className={styles.googleSignInSection}>
+            <GoogleLogin
+              onSuccess={handleLoginSuccess}
+              onError={handleLoginFailure}
+            />
+          </div>
+          {fileUrl && (
+            <div>
+              <h2 className={styles.header}>Uploaded File:</h2>
+              {fileUrl.endsWith('.mp4') || fileUrl.endsWith('.mov') || fileUrl.endsWith('.avi') ? (
+                <video controls width="300">
+                  <source src={fileUrl} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <Image src={fileUrl} alt="Uploaded file" width={300} height={300} />
+              )}
+            </div>
+          )}
+          {/* <div className={styles.instagramFeedSection}>
+            <InstagramFeed />
+          </div> */}
         </div>
       </div>
     </GoogleOAuthProvider>

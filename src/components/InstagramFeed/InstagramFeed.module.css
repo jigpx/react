@@ -30,7 +30,7 @@
   padding: 8px;
   font-size: 14px;
   color: #333;
-  font-family: 'Barlow Semi Condensed', sans-serif;
-  font-weight: 600; /* Semi Bold */
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 700; /* Bold */
   text-indent: 20px; /* Left indent */
 }

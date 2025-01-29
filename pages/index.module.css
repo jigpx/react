@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&family=Ubuntu+Mono:wght@700&display=swap');
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px;
   text-align: center; /* Center align text */
+  font-family: 'IBM Plex', sans-serif;
+  font-weight: 700; /* Bold */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px; /* Add margin to account for the fixed top bar */
 }
 
 .headerAnimation {
@@ -14,7 +22,8 @@
 
 .header {
   font-size: 48px; /* Large font size */
-  font-weight: bold;
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 700; /* Bold */
   margin-bottom: 24px;
 }
 
@@ -60,4 +69,80 @@
   padding: 8px;
   font-size: 14px;
   color: #333;
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 700; /* Bold */
+}
+
+.topBar {
+  width: 100%;
+  padding: 16px;
+  background-color: #fff; /* White color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap if they overflow */
+}
+
+.topBarContent {
+  display: flex;
+  justify-content: flex-start; /* Align items to the left */
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap; /* Allow items to wrap if they overflow */
+}
+
+.topBar h1 {
+  font-size: 24px;
+  font-family: 'Ubuntu Mono', monospace;
+  font-weight: 700; /* Bold */
+  margin: 0 16px;
+  color: #000; /* Black color for text */
+}
+
+.topBar ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  flex-wrap: wrap; /* Allow items to wrap if they overflow */
+}
+
+.topBar li {
+  margin: 0;
+}
+
+.topBar a {
+  color: #000; /* Black color for links */
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 700; /* Bold */
+  text-transform: uppercase; /* Capitalize links */
+}
+
+.topBar a:hover {
+  text-decoration: underline;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .topBar {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: flex-start;
+  }
+
+  .topBarContent {
+    justify-content: flex-start; /* Align items to the left */
+    width: 100%;
+  }
+
+  .topBar ul {
+    justify-content: flex-start; /* Align items to the left */
+    width: 100%;
+  }
 }

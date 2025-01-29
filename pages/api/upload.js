@@ -1,55 +1,41 @@
-// pages/api/upload.js
-
+import nextConnect from 'next-connect';
+import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
-import multer from 'multer';
 
-// Define valid MIME types for images and videos
-const fileTypes = /jpeg|jpg|png|gif|mp4|mov|avi/;  // Adjust this to include any other types you want
+// Ensure the uploads directory exists
+const uploadDir = './public/uploads';
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
-// Set up Multer to store files in a temporary folder and preserve original file extension
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // Store files in the public/uploads folder
-    cb(null, 'public/uploads/');
-  },
-  filename: (req, file, cb) => {
-    // Preserve the original filename and extension
-    cb(null, file.originalname);
-  },
-});
-
+// Set up multer for file storage
 const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    // Validate file types (images and videos)
-    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimeType = fileTypes.test(file.mimetype);
+  storage: multer.diskStorage({
+    destination: uploadDir,
+    filename: (req, file, cb) => cb(null, file.originalname),
+  }),
+});
 
-    if (extname && mimeType) {
-      return cb(null, true); // Accept the file
-    } else {
-      cb(new Error('Invalid file type. Only images and videos are allowed.'));
-    }
+const apiRoute = nextConnect({
+  onError(error, req, res) {
+    res.status(501).json({ error: `Sorry something happened! ${error.message}` });
+  },
+  onNoMatch(req, res) {
+    res.status(405).json({ error: `Method '${req.method}' not allowed` });
   },
 });
+
+apiRoute.use(upload.single('file'));
+
+apiRoute.post((req, res) => {
+  res.status(200).json({ fileUrl: `/uploads/${req.file.filename}` });
+});
+
+export default apiRoute;
 
 export const config = {
   api: {
-    bodyParser: false, // Disable Next.js default body parser to handle file upload
+    bodyParser: false, // Disallow body parsing, since we're using multer
   },
 };
-
-const uploadHandler = (req, res) => {
-  upload.single('file')(req, res, (err) => {
-    if (err) {
-      return res.status(400).json({ message: err.message });
-    }
-
-    // Get the file info and save the image/video URL
-    const uploadedFilePath = `/uploads/${req.file.filename}`;
-    res.status(200).json({ fileUrl: uploadedFilePath });
-  });
-};
-
-export default uploadHandler;

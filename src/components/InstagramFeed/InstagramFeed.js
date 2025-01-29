@@ -24,16 +24,18 @@ const InstagramFeed = () => {
 
   const truncateCaption = (caption) => {
     if (!caption) return ''; // Return an empty string if caption is undefined
-    if (caption.length > 100) {
-      return caption.substring(0, 100) + '...';
+    // Remove hashtags
+    const captionWithoutHashtags = caption.replace(/#[\w-]+/g, '').trim();
+    if (captionWithoutHashtags.length > 100) {
+      return captionWithoutHashtags.substring(0, 100) + '...';
     }
-    return caption;
+    return captionWithoutHashtags;
   };
 
   return (
     <div className={styles.instagramFeed}>
       {posts.length > 0 ? (
-        posts.map((post) => (
+        posts.slice(0, 6).map((post) => ( // Limit to 6 posts
           <div key={post.id} className={styles.post}>
             {post.media_type === 'IMAGE' ? (
               <Image src={post.media_url} alt={post.caption || 'Instagram post'} className={styles.postImage} width={500} height={500} />
