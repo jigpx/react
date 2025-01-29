@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   output: 'export',
   images: {
-    domains: ['scontent-lga3-1.cdninstagram.com'], // Add the external image domains here
+    domains: ['jigpx.com'], // Add your domain if you are using external images
     unoptimized: true, // Disable the Image Optimization API
   },
 };
