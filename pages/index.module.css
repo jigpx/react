@@ -100,8 +100,11 @@
   font-size: 24px;
   font-family: 'Ubuntu Mono', monospace;
   font-weight: 700; /* Bold */
-  margin: 0 16px;
+  margin: 0 auto; /* Center the heading */
   color: #000; /* Black color for text */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .topBar ul {
@@ -144,5 +147,11 @@
   .topBar ul {
     justify-content: flex-start; /* Align items to the left */
     width: 100%;
+  }
+
+  .topBar h1 {
+    position: static;
+    transform: none;
+    margin: 16px 0;
   }
 }
