@@ -23,15 +23,15 @@ export default function Home() {
     formData.append('file', file);
 
     try {
-      // Send the file to an external API
-      const response = await fetch('https://your-external-api.com/upload', {
+      // Send the file to the API route that handles Google Drive upload
+      const response = await fetch('/api/upload', {
         method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
-        setFileUrl(data.fileUrl); // Update the URL for the uploaded file
+        setFileUrl(`https://drive.google.com/uc?id=${data.fileId}`); // Update the URL for the uploaded file
         alert('File uploaded successfully!');
       } else {
         alert('File upload failed');
@@ -72,8 +72,8 @@ export default function Home() {
 
   return (
     <GoogleOAuthProvider clientId="296455840054-cvkq3gv3201h5io3lopmp7k2ftar8ob4.apps.googleusercontent.com">
-      <div className={styles.topBar}>
-        <h1>Jigar Patel</h1>
+      <div className={`${styles.topBar} ${styles.silkscreenFont}`}>
+        <h1 className={styles.unicaOneFont}>Jigar Patel</h1>
         <div className={styles.topBarContent}>
           <ul>
             <li><a href="https://www.instagram.com/jigpx" target="_blank" rel="noopener noreferrer"><Image src="/images/instagram.svg" alt="Instagram" width={24} height={24} /></a></li>
@@ -88,7 +88,7 @@ export default function Home() {
           </ul>
         </div>
       </div>
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles.silkscreenFont}`}>
         <div>
           <div className={styles.uploadSection}>
             <h1 className={styles.header}>Upload Your Image or Video</h1>

@@ -2,6 +2,17 @@ import nextConnect from 'next-connect';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import { google } from 'googleapis';
+
+const SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+const KEYFILEPATH = 'T:/AI/google drive api/react/client_secret_296455840054-cvkq3gv3201h5io3lopmp7k2ftar8ob4.apps.googleusercontent.com.json'; // Update with the path to your credentials.json file
+
+const auth = new google.auth.GoogleAuth({
+  keyFile: KEYFILEPATH,
+  scopes: SCOPES,
+});
+
+const drive = google.drive({ version: 'v3', auth });
 
 // Ensure the uploads directory exists
 const uploadDir = './public/uploads';
@@ -28,14 +39,37 @@ const apiRoute = nextConnect({
 
 apiRoute.use(upload.single('file'));
 
-apiRoute.post((req, res) => {
-  res.status(200).json({ fileUrl: `/uploads/${req.file.filename}` });
-});
+apiRoute.post(async (req, res) => {
+  const filePath = path.join(uploadDir, req.file.originalname);
 
-export default apiRoute;
+  try {
+    const fileMetadata = {
+      name: req.file.originalname,
+    };
+    const media = {
+      mimeType: req.file.mimetype,
+      body: fs.createReadStream(filePath),
+    };
+
+    const response = await drive.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: 'id',
+    });
+
+    fs.unlinkSync(filePath); // Remove the file from the server after upload
+
+    res.status(200).json({ fileId: response.data.id });
+  } catch (error) {
+    console.error('Error uploading file to Google Drive:', error);
+    res.status(500).json({ error: 'Error uploading file to Google Drive' });
+  }
+});
 
 export const config = {
   api: {
-    bodyParser: false, // Disallow body parsing, since we're using multer
+    bodyParser: false,
   },
 };
+
+export default apiRoute;
